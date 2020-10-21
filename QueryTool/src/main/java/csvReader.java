@@ -10,8 +10,8 @@ import org.apache.commons.csv.CSVRecord;
 
 public class csvReader {
     public static void main(String[] args) throws IOException {
-        Map parentId = new HashMap<String, Long>();
-        Map parentId2 = new HashMap<String, Long>();
+        Map parentIdDistrict = new HashMap<String, Long>();
+        Map parentIdWard = new HashMap<String, Long>();
         String temp = "";
         String temp2 = "";
         String temp3 = "";
@@ -26,7 +26,7 @@ public class csvReader {
             else {
                 temp = csvRecord.get(0);
                 cnt++;
-                parentId.put(csvRecord.get(2), cnt);
+                parentIdDistrict.put(csvRecord.get(2), cnt);
             }
             // insert city
 //            System.out.println("insert into data_location(name,code,type) values('" + csvRecord.get(0) +
@@ -38,10 +38,10 @@ public class csvReader {
             else {
                 temp2 = csvRecord.get(3);
                 cnt++;
-                parentId2.put(csvRecord.get(5), cnt - 1);
+                parentIdWard.put(csvRecord.get(5), cnt - 1);
             }
 //            System.out.println("insert into data_location(parent_id,name,code,type) values("
-//                    + parentId.get(csvRecord.get(2)) + ", '" + csvRecord.get(3) + "', '"
+//                    + parentIdDistrict.get(csvRecord.get(2)) + ", '" + csvRecord.get(3) + "', '"
 //                    + csvRecord.get(5)+"',2);");
         }
         for (CSVRecord csvRecord : csvRecords) {
@@ -51,10 +51,10 @@ public class csvReader {
                 cnt++;
             }
             System.out.println("insert into data_location(parent_id,name,code,type) values("
-                    + parentId2.get(csvRecord.get(5)) + ",'" + csvRecord.get(6) + "', '"
+                    + parentIdWard.get(csvRecord.get(5)) + ",'" + csvRecord.get(6) + "', '"
                     +csvRecord.get(8)+"' ,3);"
             );
         }
-        System.out.println(parentId2.get("148"));
+        System.out.println(parentIdWard.get("148"));
     }
 }
